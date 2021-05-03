@@ -175,8 +175,8 @@ def insertOnePersonIntoMongoDB(url,bdd,name):
 #        data = "not enough data"
         data = registres(makeRequest(url),data)
     else:
-        print("Unsupported URL")
-        print(url)
+#        print("Unsupported URL")
+#        print(url)
         data = "not enough data"
     # Recherche des longitudes et latitudes
     if data != "not enough data" :
@@ -246,7 +246,5 @@ def insertPeopleSameNameIntoMongoDB(name):
     return coverage(bdd["people"],total,name)
 
 print(insertPeopleSameNameIntoMongoDB("guilly"))
-print(insertPeopleSameNameIntoMongoDB("guilbert"))
-print(insertPeopleSameNameIntoMongoDB("szelag"))
 
 

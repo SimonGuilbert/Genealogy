@@ -12,6 +12,10 @@ const http404 = require('./middleware/route404');
 //Create an application 
 const app = express();
 
+var cors = require('cors')
+
+app.use(cors())
+
 //used to fetch the data from forms on HTTP POST, and PUT
 app.use(bodyParser.urlencoded({
     extended : true

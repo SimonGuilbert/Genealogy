@@ -48,3 +48,10 @@
     transform: rotate(360deg);
   }
 }
+
+.leaflet-container {
+  width: 100vw;
+  height: 400px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}

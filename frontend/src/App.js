@@ -6,6 +6,7 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Grid from '@material-ui/core/Grid';
+import MapView from './components/MapView';
 
 function App() {
   return (
@@ -33,7 +34,7 @@ function App() {
             renderInput={(params) => <TextField {...params} label="Noms de famille" variant="outlined" />}
         />
         <Button variant="contained">Valider</Button>
-        <p> Place de la carte</p>
+        <MapView/>
         <h2>Quelques statistiques en + </h2>
         <p> Palce des diagrammes</p>
       </body>

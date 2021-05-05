@@ -37,7 +37,6 @@ export default function MapView() {
     .then(( data ) => addPeople(data))
     .catch((err) => console.log(err))
   }
-
   
 
   return (

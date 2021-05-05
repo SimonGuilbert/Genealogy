@@ -23,8 +23,7 @@
 
 .App-combo-box {
   width: 400px;
-  position: absolute;
-  margin-left: 20px;
+  position: center;
 }
 
 .App-body {

@@ -10,6 +10,10 @@ import Slider from '@material-ui/core/Slider';
 import MapView from '../components/mapView';
 
 export default function Home() {
+  const listePersonne = [{nom :"Szelag"},{nom: "Guilbert"},{nom : "Guilly"}];
+  const [value, setValue] = React.useState(listePersonne[0]);
+  const [inputValue, setInputValue] = React.useState("");
+  
   return (
     <div className="divHome">
         <div className="bienvenue">
@@ -30,9 +34,17 @@ export default function Home() {
             <div className="inner-left">
               <Autocomplete
                   className="App-combo-box"
-                  options={['nom1','nom2']}
-                  getOptionLabel={(option) => option.title}
-                  renderInput={(params) => <TextField {...params} 
+                  value={value}
+                  onChange={(event, newValue) => {
+                      setValue(newValue);
+                  }}
+                  inputValue={inputValue}
+                  onInputChange={(event, newInputValue) => {
+                      setInputValue(newInputValue);
+                  }}
+                  options={listePersonne}
+                  getOptionLabel={(listePersonne) => listePersonne.nom}
+                  renderInput={(params) => <TextField {...params}
                   label="Nom de famille" variant="outlined" />}
               /><br/>
             <div className = "valider">

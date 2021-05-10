@@ -1,0 +1,14 @@
+.divInsert {
+    width: 40%;
+    border: black solid 1px;
+    margin: auto;
+    text-align: center;
+    margin-bottom: 40px;
+    padding-top: 7%;
+    padding-bottom: 7%;
+}
+
+.select {
+    width: 55%;
+    margin: auto;
+}

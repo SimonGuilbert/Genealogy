@@ -14,7 +14,6 @@ export default function Home() {
   
   async function makeGetRequest(url) {
         let res = await axios.get(url)
-        console.log(res)
         return res;
   }
   const [listePersonne, setListePersonne] = React.useState([]);
@@ -22,10 +21,34 @@ export default function Home() {
   const [inputValue, setInputValue] = React.useState("");
 
   const [actualName, setActualName] = React.useState("");
+  const [dataHisto, updateDataHisto] = React.useState({});
+
+  function getDic(data) {
+    let result = {1600:0,1610:0,1620:0,1630:0,1640:0,1650:0,1660:0,1670:0,1680:0,1690:0,
+        1700:0,1710:0,1720:0,1730:0,1740:0,1750:0,1760:0,1770:0,1780:0,1790:0,
+        1800:0,1810:0,1820:0,1830:0,1840:0,1850:0,1860:0,1870:0,1880:0,1890:0,
+        1900:0,1910:0,1920:0,1930:0,1940:0,1950:0,1960:0,1970:0,1980:0,1990:0}
+    let i = 0;
+    for (i = 0; i < data.length; i++) {
+        try{
+            let date = (data[i].events[0].date).substring(0,3)
+            date = Number(date + "0")
+            if (date in result) {
+                result[date] += 1
+            } 
+        } catch {
+            console.log("Unavailable date")
+        }
+    }
+    console.log(result)
+    return result;
+  }
   
   function handleClick(e) {    
         setActualName(inputValue.toLowerCase())
-        console.log(actualName)
+        makeGetRequest("http://localhost:3001/api/v1/data/"+inputValue.toLowerCase())
+        .then((data) => updateDataHisto(getDic(data.data)))
+        .catch((err) => console.log(err))
     }
 
   React.useEffect(() => {

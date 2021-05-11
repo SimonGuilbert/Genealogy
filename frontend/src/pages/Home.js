@@ -14,12 +14,19 @@ export default function Home() {
   
   async function makeGetRequest(url) {
         let res = await axios.get(url)
+        console.log(res)
         return res;
   }
-  const listePersonne = makeGetRequest("http://localhost:3001/api/v1/distinct");
-  const [value, setValue] = React.useState(listePersonne[0]);
+  const [listePersonne, setListePersonne] = React.useState([]);
+  const [value, setValue] = React.useState("");
   const [inputValue, setInputValue] = React.useState("");
-  
+
+  React.useEffect(() => {
+    makeGetRequest("http://localhost:3001/api/v1/distinct")
+    .then(( data ) => setListePersonne(data.data))
+    .catch((err) => console.log(err))
+  }, []);
+
   return (
     <div className="divHome">
         <div className="bienvenue">
@@ -49,7 +56,6 @@ export default function Home() {
                       setInputValue(newInputValue);
                   }}
                   options={listePersonne}
-                  getOptionLabel={(listePersonne) => listePersonne.nom}
                   renderInput={(params) => <TextField {...params}
                   label="Nom de famille" variant="outlined" />}
               /><br/>

@@ -25,3 +25,8 @@ body {
   margin-bottom: 50px;
   border:3px dashed black;
 }
+
+#refreshButton {
+  margin-left: 45vw;
+  width: 10vw;
+}

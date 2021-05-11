@@ -13,7 +13,14 @@ export default function Home() {
   const listePersonne = [{nom :"Szelag"},{nom: "Guilbert"},{nom : "Guilly"}];
   const [value, setValue] = React.useState(listePersonne[0]);
   const [inputValue, setInputValue] = React.useState("");
+
+  const [actualName, setActualName] = React.useState("");
   
+  function handleClick(e) {    
+        setActualName(inputValue.toLowerCase())
+        console.log(actualName)
+    }
+
   return (
     <div className="divHome">
         <div className="bienvenue">
@@ -48,7 +55,7 @@ export default function Home() {
                   label="Nom de famille" variant="outlined" />}
               /><br/>
             <div className = "valider">
-              <Button variant="contained">Valider</Button>
+              <Button variant="contained" onClick={handleClick}>Valider</Button>
             </div><br/>
             <Link href="/insert">
                 Vous ne trouvez pas votre nom ? Cliquez ici pour l'enregistrer dans nos bases de données
@@ -72,7 +79,7 @@ export default function Home() {
                 </div>
           
         <div>
-            <MapView/>
+            <MapView actualName={actualName} setActualName={setActualName}/>
         </div>
     </div>
   );

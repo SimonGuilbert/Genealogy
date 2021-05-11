@@ -245,6 +245,6 @@ def insertPeopleSameNameIntoMongoDB(name):
         num_page += 1
     return coverage(bdd["people"],total,name)
 
-print(insertPeopleSameNameIntoMongoDB("guilly"))
+print(insertPeopleSameNameIntoMongoDB("guilbert"))
 
 

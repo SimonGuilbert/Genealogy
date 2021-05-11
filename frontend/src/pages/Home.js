@@ -8,9 +8,15 @@ import Link from '@material-ui/core/Link';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Slider from '@material-ui/core/Slider';
 import MapView from '../components/mapView';
+import axios from "axios";
 
 export default function Home() {
-  const listePersonne = [{nom :"Szelag"},{nom: "Guilbert"},{nom : "Guilly"}];
+  
+  async function makeGetRequest(url) {
+        let res = await axios.get(url)
+        return res;
+  }
+  const listePersonne = makeGetRequest("http://localhost:3001/api/v1/distinct");
   const [value, setValue] = React.useState(listePersonne[0]);
   const [inputValue, setInputValue] = React.useState("");
   

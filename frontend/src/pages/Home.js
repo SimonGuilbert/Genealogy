@@ -98,7 +98,9 @@ export default function Home() {
             </div>
 
             <div className="inner-right">
-                <h1>Emplacement pour graphique (diagramme en barres du nombre d'ancetres trouvés en fonction du temps)</h1>
+                <canvas id="myChart"></canvas>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+                <script src="Histogramme.js"></script>
             </div>
         </div>
           

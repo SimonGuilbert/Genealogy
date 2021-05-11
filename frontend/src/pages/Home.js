@@ -8,10 +8,17 @@ import Link from '@material-ui/core/Link';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Slider from '@material-ui/core/Slider';
 import MapView from '../components/mapView';
+import axios from "axios";
 
 export default function Home() {
-  const listePersonne = [{nom :"Szelag"},{nom: "Guilbert"},{nom : "Guilly"}];
-  const [value, setValue] = React.useState(listePersonne[0]);
+  
+  async function makeGetRequest(url) {
+        let res = await axios.get(url)
+        console.log(res)
+        return res;
+  }
+  const [listePersonne, setListePersonne] = React.useState([]);
+  const [value, setValue] = React.useState("");
   const [inputValue, setInputValue] = React.useState("");
 
   const [actualName, setActualName] = React.useState("");
@@ -20,6 +27,12 @@ export default function Home() {
         setActualName(inputValue.toLowerCase())
         console.log(actualName)
     }
+
+  React.useEffect(() => {
+    makeGetRequest("http://localhost:3001/api/v1/distinct")
+    .then(( data ) => setListePersonne(data.data))
+    .catch((err) => console.log(err))
+  }, []);
 
   return (
     <div className="divHome">
@@ -50,7 +63,6 @@ export default function Home() {
                       setInputValue(newInputValue);
                   }}
                   options={listePersonne}
-                  getOptionLabel={(listePersonne) => listePersonne.nom}
                   renderInput={(params) => <TextField {...params}
                   label="Nom de famille" variant="outlined" />}
               /><br/>

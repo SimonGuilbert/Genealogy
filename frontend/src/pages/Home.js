@@ -8,6 +8,7 @@ import Link from '@material-ui/core/Link';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Slider from '@material-ui/core/Slider';
 import MapView from '../components/mapView';
+import Histogramme from '../components/Histogramme';
 import axios from "axios";
 
 export default function Home() {
@@ -21,10 +22,10 @@ export default function Home() {
   const [inputValue, setInputValue] = React.useState("");
 
   const [actualName, setActualName] = React.useState("");
-  const [dataHisto, updateDataHisto] = React.useState({});
+  const [dataHisto, updateDataHisto] = React.useState({"init":0});
 
   function getDic(data) {
-    let result = {1600:0,1610:0,1620:0,1630:0,1640:0,1650:0,1660:0,1670:0,1680:0,1690:0,
+    let result = {
         1700:0,1710:0,1720:0,1730:0,1740:0,1750:0,1760:0,1770:0,1780:0,1790:0,
         1800:0,1810:0,1820:0,1830:0,1840:0,1850:0,1860:0,1870:0,1880:0,1890:0,
         1900:0,1910:0,1920:0,1930:0,1940:0,1950:0,1960:0,1970:0,1980:0,1990:0}
@@ -40,12 +41,11 @@ export default function Home() {
             console.log("Unavailable date")
         }
     }
-    console.log(result)
     return result;
   }
   
   function handleClick(e) {    
-        setActualName(inputValue.toLowerCase())
+    setActualName(inputValue.toLowerCase())
         makeGetRequest("http://localhost:3001/api/v1/data/"+inputValue.toLowerCase())
         .then((data) => updateDataHisto(getDic(data.data)))
         .catch((err) => console.log(err))
@@ -98,9 +98,8 @@ export default function Home() {
             </div>
 
             <div className="inner-right">
-                <canvas id="myChart"></canvas>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
-                <script src="Histogramme.js"></script>
+            Ancêtres trouvés par période de 10 ans de 1700 à 2000
+            {actualName ? <Histogramme data={dataHisto}/> : null}
             </div>
         </div>
           

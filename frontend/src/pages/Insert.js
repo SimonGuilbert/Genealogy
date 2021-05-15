@@ -10,6 +10,7 @@ import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel'; 
 import Button from '@material-ui/core/Button'; 
 import LinearProgress from '@material-ui/core/LinearProgress'; 
+import axios from 'axios';
 
 
 
@@ -17,13 +18,11 @@ export default function Insert() {
 
     async function makePostRequest(url, newName, newQuantity) {
     
-        //let res = await axios.post(url, {
-        //  name: newName
-        //});
-        let res = newName ;
-        console.log(newQuantity);
-        console.log(res);
-        await new Promise(r => setTimeout(r, 5000));
+        let res = await axios.post(url, {
+          name: newName,
+          quantity: newQuantity
+        });
+        //await new Promise(r => setTimeout(r, newQuantity/50 * 60000));
         setInProcess(false);
         setFinished(true);
         return res;
